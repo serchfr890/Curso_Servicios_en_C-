@@ -25,14 +25,14 @@ namespace WebAppiPrueba.Controllers
         public ActionResult<IEnumerable<Autor>> Get()
         {
             //Trae un listado de la base de datos 
-            return context.Autores.ToList();
+            return context.Autores.Include(x => x.Libros).ToList();
         }
 
         //Obtiene un autor en especifico
         [HttpGet ("{id}", Name = "ObtenerAutor")]
         public ActionResult<Autor> Get(int id)
         {
-            var autor = context.Autores.FirstOrDefault(x => x.Id == id);
+            var autor = context.Autores.Include(x => x.Libros).FirstOrDefault(x => x.Id == id);
             if(autor == null)
             {
                 return NotFound();

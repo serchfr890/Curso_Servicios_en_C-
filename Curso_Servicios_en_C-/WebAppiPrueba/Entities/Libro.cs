@@ -13,6 +13,6 @@ namespace WebAppiPrueba.Entities
         public string Titulo { set; get; }
         [Required]
         public int AutorId { set; get; }
-        public Autor autor { set; get; }
+        public Autor Autor { set; get; }
     }
 }
