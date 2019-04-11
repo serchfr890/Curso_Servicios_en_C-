@@ -19,14 +19,14 @@ namespace WebAppiPrueba.Controllers
             this.context = context;
         }
 
-        [HttpGet]
-        //En este metodo nos dice que puiede regresar dos tipos de dato
-        //ActionResult 200, 404 etc o IEnumerable una lista de autores
-        public ActionResult<IEnumerable<Autor>> Get()
-        {
-            //Trae un listado de la base de datos 
-            return context.Autores.Include(x => x.Libros).ToList();
-        }
+        //[httpget]
+        ////en este metodo nos dice que puiede regresar dos tipos de dato
+        ////actionresult 200, 404 etc o ienumerable una lista de autores
+        //public actionresult<ienumerable<autor>> get()
+        //{
+        //    //trae un listado de la base de datos 
+        //    return context.autores.include(x => x.libros).tolist();
+        //}
 
         //Obtiene un autor en especifico
         [HttpGet ("{id}", Name = "ObtenerAutor")]
@@ -38,6 +38,12 @@ namespace WebAppiPrueba.Controllers
                 return NotFound();
             }
             return autor;
+        }
+
+        [HttpGet("primer")]
+        public ActionResult<Autor> GetPrimero()
+        {
+            return context.Autores.Include(x => x.Libros).FirstOrDefault();
         }
 
         [HttpPost]
